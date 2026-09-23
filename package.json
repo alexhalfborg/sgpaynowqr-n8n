@@ -1,0 +1,59 @@
+{
+	"name": "n8n-nodes-sgpaynowqr",
+	"version": "0.1.0",
+	"description": "n8n node to generate Singapore PayNow QR codes with a fixed amount and reference, via the SGPayNowQR API",
+	"license": "MIT",
+	"homepage": "https://developers.sgpaynowqr.com/docs/guides/n8n",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"paynow",
+		"sgqr",
+		"qr-code",
+		"singapore",
+		"payments"
+	],
+	"author": {
+		"name": "Alex Tan",
+		"email": "alex@halfborg.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alexhalfborg/sgpaynowqr-n8n.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease",
+		"test": "vitest run"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/SgPayNowQrApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/SgPayNowQr/SgPayNowQr.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2",
+		"vitest": "^4.1.11"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
