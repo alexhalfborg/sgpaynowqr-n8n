@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-sgpaynowqr",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "n8n node to generate Singapore PayNow QR codes with a fixed amount and reference, via the SGPayNowQR API",
 	"license": "MIT",
 	"homepage": "https://developers.sgpaynowqr.com/docs/guides/n8n",
