@@ -6,8 +6,9 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 	JsonObject,
+	NodeConnectionType,
 } from 'n8n-workflow';
-import { NodeApiError, NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
+import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 import { qrCodeFields, qrCodeOperations } from './QrCodeDescription';
 import {
 	buildGenerateBody,
@@ -20,6 +21,11 @@ import {
 	type GenerateResponseData,
 	type PaymentType,
 } from './GenericFunctions';
+
+// Plain 'main' rather than NodeConnectionTypes.Main: n8n resolves n8n-workflow from
+// ~/.n8n/nodes/node_modules when a copy is there, and copies older than 1.90 left by
+// other community packages don't export NodeConnectionTypes, so the class can't load.
+const MAIN: NodeConnectionType = 'main';
 
 // Programmatic rather than declarative: the API returns the QR image as base64
 // inside JSON, and the node turns it into n8n binary data so it can go straight
@@ -37,8 +43,8 @@ export class SgPayNowQr implements INodeType {
 			name: 'SGPayNowQR',
 		},
 		usableAsTool: true,
-		inputs: [NodeConnectionTypes.Main],
-		outputs: [NodeConnectionTypes.Main],
+		inputs: [MAIN],
+		outputs: [MAIN],
 		credentials: [
 			{
 				name: 'sgPayNowQrApi',
