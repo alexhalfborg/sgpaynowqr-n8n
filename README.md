@@ -33,7 +33,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 **Output**
 
-- **JSON:** `qr_string`, `payment_type`, `amount`, `currency`, `reference`, `expiry`, `request_id` and `usage` (`used`, `limit`, `period`).
+- **JSON:** `qr_string`, `image_url` (a link to the QR code PNG), `payment_type`, `amount`, `currency`, `reference`, `expiry`, `request_id` and `usage` (`used`, `limit`, `period`).
 - **Binary:** the QR code as `paynow-<reference>.png`, in the `data` field by default.
 
 ## Credentials
@@ -50,7 +50,7 @@ Example workflows:
 
 - **Order → QR → email.** Trigger on a new order (WooCommerce, Shopify, Google Sheets), set Amount to the order total and Reference to the order number. Then attach the `data` binary in a Gmail or Send Email node.
 - **Chat bot.** A Telegram Trigger parses an amount, SGPayNowQR generates the QR, and Telegram **Send Photo** sends it back with binary field `data`.
-- **AI Agent tool.** The node can be used as a tool, so an agent can generate a QR when asked, for example "make a $25 PayNow QR for invoice INV042".
+- **AI Agent tool.** Add **SGPayNowQR Tool** to an AI Agent, so it can generate a QR when asked, for example "make a $25 PayNow QR for invoice INV042". Agents can't pass images, so the agent replies with `image_url`, a link to the QR code image.
 
 Only successful requests count toward your monthly quota. When the quota is used up the node fails with a clear message. Turn on **Continue On Fail** if you want the workflow to carry on regardless.
 

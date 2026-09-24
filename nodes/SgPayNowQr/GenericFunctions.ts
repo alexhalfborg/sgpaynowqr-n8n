@@ -44,6 +44,8 @@ export interface GenerateResponseData {
 	expiry: string;
 	qr_image_base64?: string;
 	image_mime_type?: string;
+	/** Signed link to the QR code PNG. Missing from API versions before it was added. */
+	image_url?: string;
 }
 
 export interface ApiMeta {

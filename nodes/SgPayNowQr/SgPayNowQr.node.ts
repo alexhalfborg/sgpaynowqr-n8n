@@ -42,7 +42,13 @@ export class SgPayNowQr implements INodeType {
 		defaults: {
 			name: 'SGPayNowQR',
 		},
-		usableAsTool: true,
+		// Tools only pass JSON back to the model, never binary data, so point the agent at image_url
+		usableAsTool: {
+			replacements: {
+				description:
+					'Generate a Singapore PayNow QR code for a fixed amount. The result includes image_url, a link to the QR code image: always give that link to the user so they can open and scan it.',
+			},
+		},
 		inputs: [MAIN],
 		outputs: [MAIN],
 		credentials: [

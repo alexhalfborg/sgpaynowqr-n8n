@@ -111,6 +111,7 @@ function successResponse(overrides: IDataObject = {}) {
 				expiry: '24h',
 				qr_image_base64: PNG_BYTES.toString('base64'),
 				image_mime_type: 'image/png',
+				image_url: 'https://developers.sgpaynowqr.com/api/v1/qr-image?d=000201&size=300&color=7d1979&sig=abc',
 				...overrides,
 			},
 			meta: {
@@ -191,6 +192,7 @@ describe('SgPayNowQr.execute', () => {
 			qr_string: '000201010212...6304ABCD',
 			amount: '12.50',
 			reference: 'INV001',
+			image_url: expect.stringContaining('/api/v1/qr-image?'),
 			request_id: 'req_abc',
 			usage: { used: 3, limit: 50, period: '2026-09' },
 		});
@@ -215,6 +217,7 @@ describe('SgPayNowQr.execute', () => {
 		);
 		const [[plain]] = await node.execute.call(noImage.context);
 		expect(plain.binary).toBeUndefined();
+		expect(plain.json.image_url).toContain('/api/v1/qr-image?');
 		expect(noImage.request.mock.calls[0][1].body).toMatchObject({ include_image: false });
 	});
 
