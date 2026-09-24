@@ -73,10 +73,10 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           # Pinned: npm 12 (bundled with newer Node) skips dependency install scripts
           # by default, which some of @n8n/node-cli's dev dependencies rely on.
